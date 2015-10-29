@@ -126,16 +126,6 @@ function _M.set(self, key, value, ttl)
     end
     if DEBUG then ngx_log(ngx_DEBUG, "Saved to dictionary") end
 
-    -- Save expiry time
-    if ttl ~= 0 then
-        local expires = ngx_time() + ttl
-        local success, err, forcible = self.dict:set(key.."|tlc_expires", expires, ttl)
-        if not success then
-            ngx_log(ngx_ERR, "Error saving expiry time to shared dictionary for key '", key, "': ", err)
-        end
-        if DEBUG then ngx_log(ngx_DEBUG, "Saved expiry '", expires, "'' to shared dictionary") end
-    end
-
     return true
 end
 
@@ -167,11 +157,9 @@ function _M.get(self, key)
         end
 
         -- Calculate remaining TTL and populate the LRU cache
-        local expiry, err = self.dict:get(key.."|tlc_expires")
-        local ttl
-        if expiry then
-            ttl = expiry - ngx_time()
-            if DEBUG then ngx_log(ngx_DEBUG, "Calculated ttl: ", ttl) end
+        local ttl, err = self.dict:ttl(key)
+        if not ttl then
+            ngx_log(ngx_ERR, "error retrieving TTL: ", err)
         end
 
         -- Repopulate lru cache
