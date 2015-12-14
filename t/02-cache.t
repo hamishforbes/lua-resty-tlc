@@ -1,7 +1,7 @@
 use Test::Nginx::Socket;
 use Cwd qw(cwd);
 
-plan tests => repeat_each() * 47;
+plan tests => repeat_each() * 51;
 
 my $pwd = cwd();
 
@@ -591,6 +591,9 @@ test_val
 GET /a
 --- no_error_log
 [error]
+--- error_log
+Repopulated lru cache
+Key 'test_key' not found in LRU cache: test_val
 --- response_body
 nil
 
@@ -639,5 +642,8 @@ nil
 GET /a
 --- no_error_log
 [error]
+--- error_log
+Repopulated lru cache
+Found key 'test_key' in LRU cache
 --- response_body
 test_val
