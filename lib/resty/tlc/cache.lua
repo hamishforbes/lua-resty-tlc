@@ -122,7 +122,7 @@ function _M.set(self, key, value, ttl)
     -- Save value
     local success, err, forcible = self.dict:set(key, value, ttl, flags)
     if not success then
-        ngx_log(ngx_ERR, "Error saving to shared dictionary for key '", key, "': ", err)
+        return nil, "Error saving to shared dictionary for key '"..key.."': "..err
     end
     if DEBUG then ngx_log(ngx_DEBUG, "Saved to dictionary") end
 
@@ -131,7 +131,7 @@ function _M.set(self, key, value, ttl)
         local expires = ngx_time() + ttl
         local success, err, forcible = self.dict:set(key.."|tlc_expires", expires, ttl)
         if not success then
-            ngx_log(ngx_ERR, "Error saving expiry time to shared dictionary for key '", key, "': ", err)
+            return nil, "Error saving expiry time to shared dictionary for key '"..key.."': "..err
         end
         if DEBUG then ngx_log(ngx_DEBUG, "Saved expiry '", expires, "'' to shared dictionary") end
     end
