@@ -22,7 +22,7 @@ __DATA__
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -51,7 +51,7 @@ OK
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set()
+        manager.new()
     ';
 }
 
@@ -65,7 +65,7 @@ GET /a
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache")
+        manager.new("test_cache")
     ';
 }
 --- request
@@ -78,7 +78,7 @@ GET /a
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = foobar})
+        manager.new("test_cache", {dict = foobar})
     ';
 }
 --- request
@@ -91,8 +91,8 @@ GET /a
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
-        manager.set("test_cache2", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
+        manager.new("test_cache2", {dict = "test_cache"})
     ';
 }
 --- config
@@ -119,8 +119,8 @@ test_cache2
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
-        manager.set("test_cache2", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
+        manager.new("test_cache2", {dict = "test_cache"})
     ';
 }
 --- config

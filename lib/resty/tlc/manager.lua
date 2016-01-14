@@ -12,7 +12,7 @@ _M._VERSION = "0.01"
 local instances = {}
 
 
-function _M.set(name, opts)
+function _M.new(name, opts)
     -- Initialise a new 2 layer cache instance and save it to the global instances table
     if not name and type(name) ~= "string" and type(name) ~= "number" then
         return error("Must set an alphanumeric instance name")

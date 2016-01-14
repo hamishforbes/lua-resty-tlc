@@ -22,7 +22,7 @@ __DATA__
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        local cache = manager.set("test_cache", {dict = "test_cache"})
+        local cache = manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -65,7 +65,7 @@ test_val
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -113,7 +113,7 @@ test_val
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -152,7 +152,7 @@ nil
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -196,7 +196,7 @@ nil
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -235,7 +235,7 @@ nil
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -278,7 +278,7 @@ nil
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -324,7 +324,7 @@ bar
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -373,7 +373,7 @@ bar
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -412,7 +412,7 @@ nil
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -460,7 +460,7 @@ nil
         local unserialiser = function(input) return "Unserialised string!" end
 
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache",
+        manager.new("test_cache",
             {
                 dict = "test_cache",
                 serialiser = serialiser,
@@ -510,7 +510,7 @@ Serialised string!
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        local cache = manager.set("test_cache", {dict = "test_cache", pureffi = true})
+        local cache = manager.new("test_cache", {dict = "test_cache", pureffi = true})
     ';
 }
 --- config
@@ -552,7 +552,7 @@ test_val
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
@@ -603,7 +603,7 @@ nil
 . q{
     init_by_lua '
         local manager = require("resty.tlc.manager")
-        manager.set("test_cache", {dict = "test_cache"})
+        manager.new("test_cache", {dict = "test_cache"})
     ';
 }
 --- config
