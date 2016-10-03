@@ -8,7 +8,7 @@ local ngx_ERR = ngx.ERR
 local cjson = require "cjson"
 local json_encode = cjson.encode
 local json_decode = cjson.decode
-local ngx_time = ngx.time
+local ngx_now = ngx.now
 
 local ok, tab_new = pcall(require, "table.new")
 if not ok then
@@ -128,7 +128,7 @@ function _M.set(self, key, value, ttl)
 
     -- Save expiry time
     if ttl ~= 0 then
-        local expires = ngx_time() + ttl
+        local expires = ngx_now() + ttl
         local success, err, forcible = self.dict:set(key.."|tlc_expires", expires, ttl)
         if not success then
             return nil, "Error saving expiry time to shared dictionary for key '"..key.."': "..err
@@ -170,7 +170,7 @@ function _M.get(self, key)
         local expiry, err = self.dict:get(key.."|tlc_expires")
         local ttl
         if expiry then
-            ttl = expiry - ngx_time()
+            ttl = expiry - ngx_now()
             if DEBUG then ngx_log(ngx_DEBUG, "Calculated ttl: ", ttl) end
         end
 
