@@ -16,7 +16,7 @@ if not ok then
 end
 
 local _M = tab_new(0, 7)
-_M._VERSION = "0.01"
+_M._VERSION = "0.02"
 local mt = { __index = _M }
 
 
