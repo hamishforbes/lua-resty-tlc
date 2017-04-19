@@ -1,4 +1,4 @@
-#lua-resty-tlc
+# lua-resty-tlc
 
 Two Layer Cache implementation using [lua-resty-lrucache](https://github.com/openresty/lua-resty-lrucache) and [shared dictionaries](https://github.com/openresty/lua-nginx-module#ngxshareddict).
 
@@ -10,7 +10,7 @@ Values in shared dictionaries are automatically serialised and unserialised to J
 
 Also provides a manager module to maintain global set of TLC cache instances
 
-#Overview
+# Overview
 
 ```lua
 lua_package_path "/path/to/lua-resty-tlc/lib/?.lua;;";
@@ -83,7 +83,7 @@ location = /list {
 
 ```
 
-#Methods
+# Methods
 
 * [manager](#manager)
  * [new](#new)
